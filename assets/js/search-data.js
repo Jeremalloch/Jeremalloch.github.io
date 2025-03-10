@@ -39,7 +39,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "cv",
-          description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
+          description: "Machine Learning Engineer specializing in perception systems for autonomous vehicles at Cruise. Based in San Francisco.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
