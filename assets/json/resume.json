@@ -69,14 +69,14 @@
       "studyType": "BMath",
       "endDate": "2021-05-01",
       "courses": [
-        "Relevant Coursework: <a href='https://cs.uwaterloo.ca/~r5olivei/courses/2020-fall-cs466/'>Advanced Algorithms<a>, Algorithms, Operating Systems, <a href='https://cs.uwaterloo.ca/~yboykov/Courses/cs484/'>Computer Vision<a>, Mathematical Optimization (Convex & Linear Programming), Computational Discrete Optimization, <a href='https://www.math.uwaterloo.ca/~bico/co759/2018/index.html'>Deep Learning in Computational Discrete Optimization (graduate level)<a>, <a href='https://uwaterloo.ca/combinatorics-and-optimization/sites/default/files/uploads/documents/co_673_cs_794.pdf'>Optimization for Machine Learning (graduate level)<a>"
+        "Relevant Coursework: <a href='https://cs.uwaterloo.ca/~r5olivei/courses/2020-fall-cs466/'>Advanced Algorithms</a>, Algorithms, Operating Systems, <a href='https://cs.uwaterloo.ca/~yboykov/Courses/cs484/'>Computer Vision</a>, Mathematical Optimization (Convex & Linear Programming), Computational Discrete Optimization, <a href='https://www.math.uwaterloo.ca/~bico/co759/2018/index.html'>Deep Learning in Computational Discrete Optimization (graduate level)</a>, <a href='https://uwaterloo.ca/combinatorics-and-optimization/sites/default/files/uploads/documents/co_673_cs_794.pdf'>Optimization for Machine Learning (graduate level)</a>"
       ]
     }
   ],
   "skills": [
     {
       "name": "Programming Languages",
-      "keywords": ["Python", "C++", "C++", "CUDA (introductory)"]
+      "keywords": ["Python", "C++", "CUDA (introductory)"]
     },
     {
       "name": "ML Frameworks",

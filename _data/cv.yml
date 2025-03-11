@@ -4,7 +4,7 @@
     - name: Full Name
       value: Jeremy Malloch
     - name: Email
-      value: jeremalloch@gmail.com
+      value: jeremywebsite@malloch.ca
     - name: GitHub
       value: github.com/jeremalloch
     - name: Languages
@@ -13,9 +13,9 @@
 - title: Education
   type: time_table
   contents:
-    - title: BMath in Computer Science
+    - title: BMath in Combinatorics & Optimization and Computer Science (Double Major)
       institution: University of Waterloo
-      year: 2008 - 2012
+      year: 2021
       location: Waterloo, ON
 
 - title: Experience
@@ -30,30 +30,20 @@
         - Created ML pipelines that increased model accuracy by 23%
         - Developed and maintained production model architecture
 
-    - title: ML Engineer
-      institution: Civis Analytics
-      year: 2018 - 2021
+    - title: Autonomous Systems Software Intern
+      institution: Apple
+      year: 2019
       description:
-        - Implemented machine learning solutions for political campaigns and nonprofits
-        - Built voter turnout prediction models with 87% accuracy
-        - Led team responsible for deploying models to production
-        - Optimized ETL pipeline reducing processing time by 35%
+        - Contributed to machine learning compiler and inference framework, using C++ and Python
+        - Researched & prototyped DNN quantization & sparsification pipeline, resulting in up to 40% faster runtime of deployed models
 
-    - title: Software Engineer
-      institution: National Center for Ecological Analysis and Synthesis
-      year: 2015 - 2018
+    - title: Machine Learning Intern
+      institution: Cognitive Systems
+      year: 2018
       description:
-        - Developed data pipelines and visualization tools for ecological data
-        - Created and maintained RESTful APIs for data access
-        - Implemented statistical analysis tools for researchers
-
-    - title: Software Engineer
-      institution: Various Startups
-      year: 2012 - 2015
-      description:
-        - Built and maintained full-stack web applications
-        - Implemented data analysis features and reporting tools
-        - Collaborated with cross-functional teams on product development
+        - Developed ML models & inference tooling for WiFi based motion detectors
+        - Achieved 60x improvement in neural network inference runtime by implementing im2col convolutions, vectorization and memory alignment with Eigen in C++ for ARM CPU
+        - Researched & prototyped semi-supervised GAN data augmentation to reduce false positives
 
 - title: Projects
   type: time_table
@@ -75,13 +65,14 @@
   contents:
     - title: Programming Languages
       items:
-        - Python, JavaScript, SQL, R, Java
-        - C++, HTML/CSS, Bash
+        - Python, C++, CUDA (introductory)
+    - title: ML Frameworks
+      items:
+        - PyTorch, JAX, Keras
     - title: ML/Data Science
       items:
-        - PyTorch, TensorFlow, scikit-learn, Keras
-        - Computer Vision, NLP, Time Series Analysis
-        - Data Pipelines, ETL, Feature Engineering
+        - Computer Vision, Object Detection, Perception Systems
+        - Data Pipelines, Feature Engineering
     - title: Tools & Platforms
       items:
         - AWS, GCP, Docker, Kubernetes
