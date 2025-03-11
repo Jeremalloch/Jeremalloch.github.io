@@ -4,7 +4,7 @@
     - name: Full Name
       value: Jeremy Malloch
     - name: Email
-      value: jeremalloch@gmail.com 
+      value: jeremalloch@gmail.com
     - name: GitHub
       value: github.com/jeremalloch
     - name: Languages
@@ -28,7 +28,7 @@
         - Built and deployed computer vision systems for object detection and tracking
         - Created ML pipelines that increased model accuracy by 23%
         - Developed and maintained production model architecture
-        
+
     - title: ML Engineer
       institution: Civis Analytics
       year: 2018 - 2021
@@ -60,11 +60,11 @@
     - title: <a href="https://github.com/jeremalloch">Autonomous Vehicle Perception</a>
       year: 2022
       description: Developed perception models that detect and classify objects in various weather and lighting conditions with 95% accuracy.
-      
+
     - title: <a href="https://github.com/jeremalloch">ML Pipeline Optimization</a>
       year: 2021
       description: Built an end-to-end ML pipeline that reduced training time by 40% while maintaining model performance.
-      
+
     - title: <a href="https://github.com/jeremalloch">Computer Vision Framework</a>
       year: 2020
       description: Created a reusable computer vision framework that improved object detection accuracy across multiple use cases.

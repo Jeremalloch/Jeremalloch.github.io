@@ -27,7 +27,6 @@ latest_posts:
 
 Hi, I'm Jeremy.
 
-
 I work on training machine learning models for Autonomous Vehicle Perception.
 I previously worked on deployment optimization.
 

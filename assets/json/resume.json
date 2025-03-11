@@ -56,10 +56,7 @@
       "startDate": "2015-01-01",
       "endDate": "2018-01-01",
       "summary": "Developed data pipelines and visualization tools for ecological data",
-      "highlights": [
-        "Created and maintained RESTful APIs for data access",
-        "Implemented statistical analysis tools for researchers"
-      ]
+      "highlights": ["Created and maintained RESTful APIs for data access", "Implemented statistical analysis tools for researchers"]
     },
     {
       "name": "Various Startups",
@@ -67,10 +64,7 @@
       "startDate": "2012-01-01",
       "endDate": "2015-01-01",
       "summary": "Built and maintained full-stack web applications",
-      "highlights": [
-        "Implemented data analysis features and reporting tools",
-        "Collaborated with cross-functional teams on product development"
-      ]
+      "highlights": ["Implemented data analysis features and reporting tools", "Collaborated with cross-functional teams on product development"]
     }
   ],
   "education": [
@@ -113,16 +107,7 @@
   "skills": [
     {
       "name": "Programming Languages",
-      "keywords": [
-        "Python",
-        "JavaScript",
-        "SQL",
-        "R",
-        "Java",
-        "C++",
-        "HTML/CSS",
-        "Bash"
-      ]
+      "keywords": ["Python", "JavaScript", "SQL", "R", "Java", "C++", "HTML/CSS", "Bash"]
     },
     {
       "name": "ML/Data Science",
@@ -141,19 +126,7 @@
     },
     {
       "name": "Tools & Platforms",
-      "keywords": [
-        "AWS",
-        "GCP",
-        "Docker",
-        "Kubernetes",
-        "Git",
-        "CI/CD",
-        "MLflow",
-        "DVC",
-        "PostgreSQL",
-        "MongoDB",
-        "Redis"
-      ]
+      "keywords": ["AWS", "GCP", "Docker", "Kubernetes", "Git", "CI/CD", "MLflow", "DVC", "PostgreSQL", "MongoDB", "Redis"]
     }
   ],
   "languages": [
@@ -165,13 +138,7 @@
   "interests": [
     {
       "name": "Hobbies",
-      "keywords": [
-        "Hiking",
-        "Cycling",
-        "Photography",
-        "Open Source Contribution",
-        "Reading"
-      ]
+      "keywords": ["Hiking", "Cycling", "Photography", "Open Source Contribution", "Reading"]
     }
   ],
   "projects": [
