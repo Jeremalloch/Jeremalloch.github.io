@@ -66,7 +66,7 @@
       "institution": "University of Waterloo",
       "location": "Waterloo, Ontario, Canada",
       "url": "https://uwaterloo.ca/",
-      "area": "Mathematics & Computer Science (Double Major)",
+      "area": "Combinatorics & Optimization and Computer Science (Double Major)",
       "studyType": "BMath",
       "endDate": "2021-05-01"
     }
@@ -74,7 +74,7 @@
   "skills": [
     {
       "name": "Programming Languages",
-      "keywords": ["Python", "C++", "C++", "CUDA"]
+      "keywords": ["Python", "C++", "C++", "CUDA (introductory)"]
     },
     {
       "name": "ML Frameworks",
