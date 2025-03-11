@@ -21,6 +21,5 @@
 - Use relative URLs for internal links
 - Image paths should be relative to site root
 - Follow BEM methodology for CSS class naming
-- Liquid tags should have spaces inside: `{% tag %}` not `{%tag%}`
 - Keep markup semantic and accessible
 - CV data should follow existing format in \_data/cv.yml
