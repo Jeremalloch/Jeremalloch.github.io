@@ -28,7 +28,7 @@ latest_posts:
 Hi, I'm Jeremy.
 
 I work on training machine learning models for Autonomous Vehicle Perception.
-I previously worked on deployment optimization.
+I previously worked on deployment optimization (quantization & pruning).
 
 Before Cruise, I completed a double major in Computer Science & Math (focused on optimization) at the University of Waterloo.
 During my time at Waterloo I also interned at Apple working on their autonomous car project.

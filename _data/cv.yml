@@ -13,9 +13,10 @@
 - title: Education
   type: time_table
   contents:
-    - title: BSc in Computer Science
+    - title: BMath in Computer Science
       institution: University of Waterloo
       year: 2008 - 2012
+      location: Waterloo, ON
 
 - title: Experience
   type: time_table
