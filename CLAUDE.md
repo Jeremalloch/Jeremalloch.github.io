@@ -11,6 +11,7 @@
 
 - Validate HTML: `bundle exec htmlproofer ./_site --disable-external`
 - Check for broken links: `bundle exec htmlproofer ./_site --only-4xx --check-html`
+- Format code: `npx prettier --write .`
 
 ## Code Style Guidelines
 
