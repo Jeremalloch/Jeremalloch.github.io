@@ -30,10 +30,10 @@
       "endDate": "Present",
       "summary": "Working on perception systems for autonomous vehicles",
       "highlights": [
-        "Lead development of predictive models for autonomous vehicle systems",
-        "Built and deployed computer vision systems for object detection and tracking",
-        "Created ML pipelines that increased model accuracy by 23%",
-        "Developed and maintained production model architecture"
+        "Unblocked Cruise's return to driverless operation by leading Unified Tracker V2 model release that resolved critical ultra-nearfield risks (largest perception risk area)",
+        "Contributed multiple modelling improvements to novel Unified Tracker V1 multi-modal, temporal tracking transformer model",
+        "Increased model flop utilization by 32%, stabilized training by analyzing model activation magnitudes, and reduced velocity flips by 20%",
+        "Created model attention metrics leading to 11% reduction in centroid error, 12% reduction in velocity error, and increased recall of pedestrians from 95.03% to 98.33%"
       ]
     },
     {
