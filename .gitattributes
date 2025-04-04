@@ -1,2 +1,7 @@
 # Force LF line endings, needed for Docker to work on Windows
 *.sh text eol=lf
+
+# Exclude specific large images from pre-commit checks
+assets/img/hawk_hill_group_pic.jpg filter.check-added-large-files.exclude=true
+assets/img/jeremy_cooking.jpg filter.check-added-large-files.exclude=true
+assets/img/jeremy_jack_coachella.jpg filter.check-added-large-files.exclude=true
