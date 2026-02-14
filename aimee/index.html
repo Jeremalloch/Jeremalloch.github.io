@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aimee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        /* Envelope Styles */
+        .envelope-container {
+            perspective: 1000px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-container:hover {
+            transform: scale(1.02);
+        }
+
+        .envelope {
+            width: 320px;
+            height: 220px;
+            position: relative;
+            transition: all 0.8s ease;
+        }
+
+        .envelope-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #f5f5dc 0%, #fffef0 100%);
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(145deg, #f5f5dc 0%, #fffef0 100%);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top center;
+            transition: transform 0.6s ease;
+            z-index: 10;
+        }
+
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .heart-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            z-index: 15;
+            transition: opacity 0.3s ease;
+        }
+
+        .heart-seal svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .envelope-container.open .heart-seal {
+            opacity: 0;
+        }
+
+        /* Card Styles */
+        .card-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 360px;
+        }
+
+        .greeting {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Puzzle Styles */
+        .puzzle-container {
+            width: 270px;
+            height: 270px;
+            margin: 0 auto 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 4px;
+            background: #f0f0f0;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .puzzle-tile {
+            background-size: 270px 270px;
+            background-image: url('Unshuffle.png');
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .puzzle-tile:hover:not(.empty) {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .puzzle-tile.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .puzzle-tile.moving {
+            z-index: 10;
+        }
+
+        /* Message Styles */
+        .message-container {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .yes-button {
+            background: linear-gradient(145deg, #ffcdd2 0%, #f8bbd9 100%);
+            border: none;
+            padding: 15px 50px;
+            font-size: 18px;
+            font-family: 'Georgia', serif;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .yes-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Hint Button */
+        .hint-button {
+            background: linear-gradient(145deg, #e8e8e8 0%, #f5f5f5 100%);
+            border: 1px solid #ddd;
+            padding: 10px 25px;
+            font-size: 14px;
+            font-family: 'Georgia', serif;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .hint-button:hover:not(:disabled) {
+            background: linear-gradient(145deg, #f8bbd9 0%, #ffcdd2 100%);
+            color: #333;
+            transform: scale(1.02);
+        }
+
+        .hint-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Joke Mode Triggers */
+        .joke-trigger {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            background: transparent;
+            border: none;
+            cursor: default;
+            z-index: 5;
+        }
+
+        .joke-trigger.top-left { top: 0; left: 0; }
+        .joke-trigger.top-right { top: 0; right: 0; }
+        .joke-trigger.bottom-left { bottom: 0; left: 0; }
+        .joke-trigger.bottom-right { bottom: 0; right: 0; }
+
+        /* Timer */
+        .timer {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c62828;
+            margin-bottom: 15px;
+            font-family: monospace;
+        }
+
+        .timer.urgent {
+            animation: pulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Gift Returned Overlay */
+        .gift-returned-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gift-returned-overlay span {
+            font-size: 60px;
+            font-weight: bold;
+            color: #ff0000;
+            transform: rotate(-30deg);
+            text-align: center;
+            animation: flashText 0.3s ease-in-out infinite;
+            text-shadow: 0 0 20px #ff0000;
+        }
+
+        @keyframes flashText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Hearts Animation */
+        .heart {
+            position: fixed;
+            font-size: 24px;
+            animation: floatHeart 4s ease-in-out forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(0.5) rotate(45deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .envelope {
+                width: 280px;
+                height: 190px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .puzzle-container {
+                width: 240px;
+                height: 240px;
+            }
+
+            .puzzle-tile {
+                background-size: 240px 240px;
+            }
+
+            .greeting {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Joke Mode Triggers (invisible corners) -->
+    <div class="joke-trigger top-left" onclick="activateJokeMode()"></div>
+    <div class="joke-trigger top-right" onclick="activateJokeMode()"></div>
+    <div class="joke-trigger bottom-left" onclick="activateJokeMode()"></div>
+    <div class="joke-trigger bottom-right" onclick="activateJokeMode()"></div>
+
+    <!-- Gift Returned Overlay -->
+    <div class="gift-returned-overlay" id="giftReturned">
+        <span>GIFT RETURNED</span>
+    </div>
+
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelope" onclick="openEnvelope()">
+        <div class="envelope">
+            <div class="envelope-body"></div>
+            <div class="envelope-flap"></div>
+            <div class="heart-seal">
+                <svg viewBox="0 0 24 24" fill="#c62828">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card with Puzzle -->
+    <div class="card-container" id="card">
+        <div class="card">
+            <div class="greeting">Dear Aimee...</div>
+            <div class="timer" id="timer" style="display: none;">2:00</div>
+            <div class="puzzle-container" id="puzzle"></div>
+            <button class="hint-button" id="hintButton" onclick="getHint()">Get me started</button>
+            <div class="message-container" id="messageContainer">
+                <div class="message">...you complete me.</div>
+                <div class="question">Will you be my Valentine?</div>
+                <button class="yes-button" onclick="sayYes()">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Puzzle state
+        let tiles = [];
+        let emptyIndex = 8;
+        const puzzleSize = 3;
+        let isAnimating = false;
+
+        // Joke mode state
+        let jokeMode = false;
+        let timerInterval = null;
+        let timeRemaining = 60;
+
+        function activateJokeMode() {
+            jokeMode = true;
+        }
+
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            envelope.classList.add('open');
+
+            // Hide joke triggers once envelope is clicked
+            document.querySelectorAll('.joke-trigger').forEach(t => t.style.display = 'none');
+
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                document.getElementById('card').style.display = 'flex';
+                initPuzzle();
+
+                // Joke mode: hide hint button, show timer
+                if (jokeMode) {
+                    document.getElementById('hintButton').style.display = 'none';
+                    document.getElementById('timer').style.display = 'block';
+                    startTimer();
+                }
+            }, 800);
+        }
+
+        function startTimer() {
+            timeRemaining = 60;
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+
+                // Add urgent class when under 30 seconds
+                if (timeRemaining <= 30) {
+                    document.getElementById('timer').classList.add('urgent');
+                }
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    timeUp();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timer').textContent =
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function timeUp() {
+            // Show GIFT RETURNED overlay
+            const overlay = document.getElementById('giftReturned');
+            overlay.style.display = 'flex';
+        }
+
+        function initPuzzle() {
+            // Create tiles 0-8 (8 is empty)
+            tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+            // Shuffle until solvable
+            do {
+                shuffleArray(tiles);
+                emptyIndex = tiles.indexOf(8);
+            } while (!isSolvable(tiles));
+
+            renderPuzzle();
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function isSolvable(arr) {
+            let inversions = 0;
+            const flat = arr.filter(x => x !== 8);
+
+            for (let i = 0; i < flat.length; i++) {
+                for (let j = i + 1; j < flat.length; j++) {
+                    if (flat[i] > flat[j]) inversions++;
+                }
+            }
+
+            return inversions % 2 === 0;
+        }
+
+        function renderPuzzle() {
+            const container = document.getElementById('puzzle');
+            const isMobile = window.innerWidth <= 400;
+            const tileSize = isMobile ? 80 : 90;
+
+            container.innerHTML = '';
+
+            tiles.forEach((tileNum, index) => {
+                const tile = document.createElement('div');
+                tile.className = 'puzzle-tile' + (tileNum === 8 ? ' empty' : '');
+
+                if (tileNum !== 8) {
+                    const col = tileNum % puzzleSize;
+                    const row = Math.floor(tileNum / puzzleSize);
+                    tile.style.backgroundPosition = `-${col * tileSize}px -${row * tileSize}px`;
+                }
+
+                tile.onclick = () => moveTile(index);
+                container.appendChild(tile);
+            });
+        }
+
+        function moveTile(clickedIndex) {
+            if (isAnimating) return; // Don't allow moves during hint animation
+
+            const emptyPos = tiles.indexOf(8);
+            const clickedRow = Math.floor(clickedIndex / puzzleSize);
+            const clickedCol = clickedIndex % puzzleSize;
+            const emptyRow = Math.floor(emptyPos / puzzleSize);
+            const emptyCol = emptyPos % puzzleSize;
+
+            // Check if adjacent
+            const isAdjacent =
+                (Math.abs(clickedRow - emptyRow) === 1 && clickedCol === emptyCol) ||
+                (Math.abs(clickedCol - emptyCol) === 1 && clickedRow === emptyRow);
+
+            if (isAdjacent) {
+                // Swap tiles
+                [tiles[clickedIndex], tiles[emptyPos]] = [tiles[emptyPos], tiles[clickedIndex]];
+                renderPuzzle();
+
+                // Check win
+                if (checkWin()) {
+                    setTimeout(showMessage, 500);
+                }
+            }
+        }
+
+        function checkWin() {
+            for (let i = 0; i < tiles.length; i++) {
+                if (tiles[i] !== i) return false;
+            }
+            return true;
+        }
+
+        function showMessage() {
+            // Clear timer if in joke mode
+            if (jokeMode && timerInterval) {
+                clearInterval(timerInterval);
+                document.getElementById('timer').style.display = 'none';
+            }
+
+            document.getElementById('hintButton').style.display = 'none';
+            document.getElementById('messageContainer').style.display = 'block';
+        }
+
+        function sayYes() {
+            // Create hearts animation
+            createHearts();
+
+            // Redirect after animation
+            setTimeout(() => {
+                window.location.href = 'page2.html';
+            }, 2000);
+        }
+
+        function createHearts() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💘'];
+
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.bottom = '-50px';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        // BFS Solver for 8-puzzle
+        function solvePuzzle(startState) {
+            const goal = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            const goalStr = goal.join(',');
+
+            if (startState.join(',') === goalStr) return [];
+
+            const queue = [{ state: startState, path: [] }];
+            const visited = new Set([startState.join(',')]);
+
+            while (queue.length > 0) {
+                const { state, path } = queue.shift();
+                const emptyIdx = state.indexOf(8);
+                const row = Math.floor(emptyIdx / 3);
+                const col = emptyIdx % 3;
+
+                // Possible moves: up, down, left, right
+                const moves = [];
+                if (row > 0) moves.push(emptyIdx - 3); // up
+                if (row < 2) moves.push(emptyIdx + 3); // down
+                if (col > 0) moves.push(emptyIdx - 1); // left
+                if (col < 2) moves.push(emptyIdx + 1); // right
+
+                for (const targetIdx of moves) {
+                    const newState = [...state];
+                    [newState[emptyIdx], newState[targetIdx]] = [newState[targetIdx], newState[emptyIdx]];
+                    const stateStr = newState.join(',');
+
+                    if (!visited.has(stateStr)) {
+                        const newPath = [...path, targetIdx];
+
+                        if (stateStr === goalStr) {
+                            return newPath;
+                        }
+
+                        visited.add(stateStr);
+                        queue.push({ state: newState, path: newPath });
+                    }
+                }
+            }
+
+            return []; // No solution (shouldn't happen with valid puzzles)
+        }
+
+        async function getHint() {
+            if (isAnimating || checkWin()) return;
+
+            const hintButton = document.getElementById('hintButton');
+            hintButton.disabled = true;
+            isAnimating = true;
+
+            // Find solution path
+            const solution = solvePuzzle([...tiles]);
+
+            if (solution.length === 0) {
+                hintButton.disabled = false;
+                isAnimating = false;
+                return;
+            }
+
+            // Calculate how many moves to show
+            const movesToShow = Math.min(10, Math.max(1, Math.floor(solution.length / 3)));
+
+            // Animate the moves
+            for (let i = 0; i < movesToShow; i++) {
+                const targetIdx = solution[i];
+                const emptyIdx = tiles.indexOf(8);
+
+                // Swap
+                [tiles[emptyIdx], tiles[targetIdx]] = [tiles[targetIdx], tiles[emptyIdx]];
+                renderPuzzle();
+
+                // Check if solved
+                if (checkWin()) {
+                    setTimeout(showMessage, 500);
+                    document.getElementById('hintButton').style.display = 'none';
+                    isAnimating = false;
+                    return;
+                }
+
+                // Wait before next move
+                await new Promise(resolve => setTimeout(resolve, 400));
+            }
+
+            hintButton.disabled = false;
+            isAnimating = false;
+        }
+    </script>
+</body>
+</html>
