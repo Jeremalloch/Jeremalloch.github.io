@@ -30,7 +30,7 @@ Hi, I'm Jeremy.
 I build generative AI systems for CAD at <a href='https://www.backflip.ai/'>Backflip AI</a>,
 spanning distributed model training, agentic evaluation, and RL environment construction.
 
-Before joining Backflip, I worked on autonomous vehicle perception and model deployment at <a href='https://archive.ph/e7kd5'>Cruise</a>.
+Before joining Backflip, I worked on autonomous vehicle perception and model deployment at <a href='https://www.getcruise.com/'>Cruise</a>.
 I earned a double major in Computer Science and Math at the University of Waterloo, where I focused on optimization.
 During my time there, I also interned at Apple, working on their autonomous driving project.
 
