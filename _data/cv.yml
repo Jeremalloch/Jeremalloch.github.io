@@ -21,11 +21,17 @@
 - title: Experience
   type: time_table
   contents:
-    - title: Machine Learning Engineer
-      institution: Cruise
-      year: 2021 - Present
+    - title: Member of Technical Staff
+      institution: Backflip AI
+      year: 2025 - Present
       description:
-        - Lead development of predictive models for autonomous vehicle systems
+        - Building generative AI systems for CAD, spanning distributed model training, agentic evaluation, and RL environment construction
+
+    - title: Senior Machine Learning Engineer
+      institution: Cruise
+      year: 2021 - 2025
+      description:
+        - Led development of predictive models for autonomous vehicle systems
         - Built and deployed computer vision systems for object detection and tracking
         - Created ML pipelines that increased model accuracy by 23%
         - Developed and maintained production model architecture
@@ -45,39 +51,16 @@
         - Achieved 60x improvement in neural network inference runtime by implementing im2col convolutions, vectorization and memory alignment with Eigen in C++ for ARM CPU
         - Researched & prototyped semi-supervised GAN data augmentation to reduce false positives
 
-- title: Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/jeremalloch">Autonomous Vehicle Perception</a>
-      year: 2022
-      description: Developed perception models that detect and classify objects in various weather and lighting conditions with 95% accuracy.
-
-    - title: <a href="https://github.com/jeremalloch">ML Pipeline Optimization</a>
-      year: 2021
-      description: Built an end-to-end ML pipeline that reduced training time by 40% while maintaining model performance.
-
-    - title: <a href="https://github.com/jeremalloch">Computer Vision Framework</a>
-      year: 2020
-      description: Created a reusable computer vision framework that improved object detection accuracy across multiple use cases.
-
 - title: Skills
   type: nested_list
   contents:
     - title: Programming Languages
       items:
-        - Python, C++, CUDA (introductory)
-    - title: ML Frameworks
+        - Python, C++
+    - title: Machine Learning
       items:
-        - PyTorch, JAX, Keras
-    - title: ML/Data Science
-      items:
-        - Computer Vision, Object Detection, Perception Systems
-        - Data Pipelines, Feature Engineering
-    - title: Tools & Platforms
-      items:
-        - AWS, GCP, Docker, Kubernetes
-        - Git, CI/CD, MLflow, DVC
-        - PostgreSQL, MongoDB, Redis
+        - PyTorch, Distributed Training, Agentic Evals
+        - RL Infrastructure, ML Modelling & Deployment
 
 - title: Certifications
   type: time_table
